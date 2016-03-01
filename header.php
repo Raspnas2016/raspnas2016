@@ -1,8 +1,5 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 require_once(__DIR__ .'/objects/Functions.php');
 require_once(__DIR__ .'/php/configuration.php');
@@ -23,7 +20,7 @@ $_SESSION['secret'] = md5(uniqid());
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="js/jquery-1.12.0.min.js"></script>
     <title><?php echo $title; ?></title>
