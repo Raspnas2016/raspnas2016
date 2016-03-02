@@ -26,7 +26,13 @@ function getEncryption(){
 
 //Neustart des Raspberry Pis
 function restartPi(){
-	exec("sudo /sbin/reboot");
+	exec("sudo /etc/init.d/hostapd stop && sudo /sbin/reboot");
+}
+
+//Neustart des Sambas
+function restartSamba(){
+	exec("sudo /etc/init.d/samba stop");
+	exec("sudo /etc/init.d/samba start");
 }
 
 //Setzt die Zugriffsberechtigung für den Share

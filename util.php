@@ -32,6 +32,9 @@ Switch($_POST['req']){
 	case 'restartPi':
 		restartPi();
 		break;
+	case 'restartSamba':
+		restartSamba();
+		break;
 	case 'password':
 		if(isset($_POST['pw']) && strlen($_POST['pw']) >= 6){
 			setPassword($_POST['pw']);

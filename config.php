@@ -55,6 +55,10 @@ require('header.php');
                         <label for="switchWrite" class="label-primary"></label>
                     </div>
                 </div>
+                <div class="list-group-item">
+                    <button class="btn btn-default btn-block" id="restartSamba" data-loading-text="Neustart...">Samba neustarten</button>
+                    <div class="small text-center">Änderungen an den Zugriffsrechten übernimmt der Samba erst nach einem Neustart</div>
+                </div>
             </div>
         </div>
     </div>

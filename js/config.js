@@ -9,7 +9,7 @@ $(function(){
 
 	//Klicken auf den "Passwort festlegen"-Button
 	$("#setWifiPassword").submit(function(data){
-		//Submit abbreche
+		//Submit abbrechen
 		data.preventDefault();
 		//Prüfen, ob das Passwort acht oder mehr Zeichen lang ist
 		if($("#wifiPassword").val().length < 8){
@@ -31,7 +31,18 @@ $(function(){
 		$(this).button('loading');
 		ajax({ req: "restartPi"}, 
 			function(){error("Ein Fehler ist aufgetreten");},
-			function(){success("Bitte die Verbindung neu aufbauen, sobald dies möglich ist und diese Seite aktualisieren");});
+			function(){success("Der Raspberry Pi rebootet. Die gespeicherte Drahtlosverbindung muss möglicherweise entfernt werden.");},
+			false);
+	});
+
+	//Klicken des "Samba neustarten"-Buttons
+	$("#restartSamba").click(function(){
+		$btn = $(this).button('loading');
+		ajax({ req: "restartSamba"},function(){
+			$btn.button('reset');
+		},function(){
+			error("Ein Fehler ist aufgetreten");
+		},false);
 	});
 
 	//Klicken der "Berechtigungen ändern"-Slider
@@ -42,7 +53,7 @@ $(function(){
 
 	//Klicken der "Passwort festlegen"-Slider
 	$("#setPassword").submit(function(data){
-		//Submit abbreche
+		//Submit abbrechen
 		data.preventDefault();
 
 		var val1 = $("#password1").val();
@@ -61,23 +72,24 @@ $(function(){
 	});
 });
 
-function ajax(data, success, error){
-	if (typeof success === 'undefined') {
-		success = function(){
+function ajax(data, succeed, failed, async){
+	if (typeof succeed === 'undefined') {
+		succeed = function(){
 			errorHide();
 		}
 	}
-	if (typeof error === 'undefined') {
-		error = function(){
+	if (typeof failed === 'undefined') {
+		failed = function(){
 			error("Ein Fehler ist aufgetreten");
 		}
 	}
-	data.secret = $("#secret").val;
+	async = typeof failed === 'undefined'?true:async;
+	data.secret = $("#secret").val();
 	$.ajax({
 		url: "util.php",
 		type: 'POST',
 		data: data,
-		success: success,
-		error: error
+		success: succeed,
+		error: failed
 	});
 }
