@@ -17,7 +17,7 @@ $(function(){
 			error("Das Passwort muss mindestens 8 Zeichen lang sein");
 		}else{
 			//Passwort ändern
-			ajax({ req: "wifiPpassword", pw: $("#wifiPassword").val()});
+			ajax({ req: "wifiPassword", pw: $("#wifiPassword").val()});
 		}
 	});
 
@@ -31,7 +31,7 @@ $(function(){
 		$(this).button('loading');
 		ajax({ req: "restartPi"}, 
 			function(){error("Ein Fehler ist aufgetreten");},
-			function(){success("Der Raspberry Pi rebootet. Die gespeicherte Drahtlosverbindung muss möglicherweise entfernt werden.");},
+			function(){success("Der Raspberry Pi rebootet. Die Drahtlosverbindung muss neu aufgebaut werden");},
 			false);
 	});
 
